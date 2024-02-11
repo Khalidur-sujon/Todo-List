@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 
 const App = () => {
 	const [newTask, setNewTask] = useState("");
@@ -24,17 +25,19 @@ const App = () => {
 	};
 
 	return (
-		<div className="w-[600px] mt-8">
+		<div className="w-[600px] mt-8 ">
 			<h1 className="text-center text-4xl font-bold mb-[40px]">
 				Todo List App
 			</h1>
 
-			<div className="w-full flex flex-col items-center gap-[20px]">
+			<div className="w-full flex flex-col items-center gap-[20px] ">
 				<TodoForm
 					handleSubmit={handleSubmit}
 					handleChange={handleChange}
 					newTask={newTask}
 				/>
+
+				<TodoList tasks={tasks} />
 			</div>
 		</div>
 	);
