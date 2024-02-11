@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-const TodoList = ({ tasks }) => {
+const TodoList = ({ tasks, handleDelete }) => {
 	return (
 		<table className="w-full border-collapse rounded-lg ">
 			<thead>
@@ -17,6 +17,19 @@ const TodoList = ({ tasks }) => {
 					<tr key={task.id}>
 						<td className="p-2 border text-center">
 							<span>{task.title}</span>
+						</td>
+						<td className="p-2 border text-center">Priority</td>
+						<td className="p-2 border text-center">comp/incomp</td>
+						<td className="p-2 border text-center">
+							<button className="mr-3 text-blue-500 hover:underline ">
+								Edit
+							</button>
+							<button
+								className="text-red-500 hover:underline"
+								onClick={() => handleDelete(task.id)}
+							>
+								Delete
+							</button>
 						</td>
 					</tr>
 				))}

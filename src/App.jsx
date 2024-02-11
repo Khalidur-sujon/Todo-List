@@ -28,6 +28,14 @@ const App = () => {
 		setNewTask(e.target.value);
 	};
 
+	const handleDelete = (taskId) => {
+		setTasks((prevTasks) => {
+			const updatedTasks = prevTasks.filter((task) => task.id !== taskId);
+			localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+			return updatedTasks;
+		});
+	};
+
 	useEffect(() => {
 		const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
 		setTasks(storedTasks);
@@ -46,7 +54,7 @@ const App = () => {
 					newTask={newTask}
 				/>
 
-				<TodoList tasks={tasks} />
+				<TodoList tasks={tasks} handleDelete={handleDelete} />
 			</div>
 		</div>
 	);
