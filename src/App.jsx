@@ -15,7 +15,11 @@ const App = () => {
 				id: Date.now(),
 				title: newTask,
 			};
-			setTasks([...tasks, newTaskObject]);
+			setTasks((prevTasks) => {
+				const newTasks = [...prevTasks, newTaskObject];
+				localStorage.setItem("tasks", JSON.stringify(newTasks));
+				return newTasks;
+			});
 			setNewTask("");
 		}
 	};
@@ -23,6 +27,11 @@ const App = () => {
 	const handleChange = (e) => {
 		setNewTask(e.target.value);
 	};
+
+	useEffect(() => {
+		const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+		setTasks(storedTasks);
+	}, []);
 
 	return (
 		<div className="w-[600px] mt-8 ">
